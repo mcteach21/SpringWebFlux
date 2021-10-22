@@ -17,9 +17,21 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class Todo  { //implements Serializable
 
+    @Id
+    private String id;
+
     private String title;
     private boolean done = false;
 
+//    public Todo(String id, String title, boolean done) {
+//        this.id = id;
+//        this.title = title;
+//        this.done = done;
+//    }
+
+    public Todo(String title) {
+        this.title = title;
+    }
     public Todo(String title, boolean done) {
         this.title = title;
         this.done = done;

@@ -1,5 +1,7 @@
-package mc.apps.spring.webflux.model;
+package mc.apps.spring.webflux.service;
 
+import mc.apps.spring.webflux.model.Todo;
+import mc.apps.spring.webflux.model.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;

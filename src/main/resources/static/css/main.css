@@ -42,7 +42,7 @@ body {
 }
 body {
     color: #fff;
-    text-align: center;
+    /*text-align: center;*/
     text-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
 
@@ -83,6 +83,7 @@ body {
 }
 .masthead-nav > li + li {
     margin-left: 20px;
+    padding: 10px;
 }
 .masthead-nav > li > a {
     padding-right: 0;
@@ -183,4 +184,45 @@ body {
 .lead {
     font-size: 1rem;
     font-weight: 300;
+}
+.lead p{
+    text-align: justify;
+}
+.bloc{
+    border: 1px whitesmoke solid; margin: 2px; padding:10px;
+}
+
+.dropdown-menu {
+    background-color: #5d5252 !important;
+}
+.dropdown-item{
+    color: white !important;
+}
+.masthead{
+    z-index:1000;
+}
+
+a, a:hover{
+    background-color: transparent !important;
+}
+.nav-item>a:hover {
+    text-decoration: none;
+}
+.dropdown-menu>a:hover{
+    color: greenyellow !important;
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    height: 400px;
+    overflow: auto;
+}
+.table-wrapper-scroll-y {
+    display: block;
+}
+.green{
+    color:yellowgreen;
+}
+.red{
+    color:red;
 }

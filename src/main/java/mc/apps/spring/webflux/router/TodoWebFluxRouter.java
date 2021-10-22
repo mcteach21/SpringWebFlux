@@ -1,7 +1,7 @@
 package mc.apps.spring.webflux.router;
 
 import mc.apps.spring.webflux.model.Todo;
-import mc.apps.spring.webflux.model.TodoReactiveService;
+import mc.apps.spring.webflux.service.TodoReactiveService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Bean;
@@ -20,49 +20,57 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
 @Configuration
-public class WebFluxRouter {
-    private static final Logger logger = LogManager.getLogger(WebFluxRouter.class);
+public class TodoWebFluxRouter {
+    private static final Logger logger = LogManager.getLogger(TodoWebFluxRouter.class);
 
     final
     TodoReactiveService todoService;
-    public WebFluxRouter(TodoReactiveService todoService) {
+    public TodoWebFluxRouter(TodoReactiveService todoService) {
         this.todoService = todoService;
     }
 
     @Bean
-    public RouterFunction<ServerResponse> simpleRoute (WebFluxHandler webFluxHandler) {
+    public RouterFunction<ServerResponse> simpleRoute (TodoWebFluxHandler webFluxHandler) {
         logger.info("simpleRoute..");
         return RouterFunctions.route(RequestPredicates
-                        .GET("/")
+                        .GET("/hello")
                         .and(RequestPredicates.accept(MediaType.TEXT_PLAIN)), webFluxHandler::hello);
     }
 
     @Bean
     RouterFunction<ServerResponse> composedRoutes() {
+
+        logger.info("composedRoutes..");
         return
                 route(
                         GET("/todos"),
                         req -> ok().body(todoService.findAll(), Todo.class)
                 )
-                .and(route(GET("/todos/{id}"),
-                        req -> ok().body(
-                                todoService.findById(Integer.valueOf(req.pathVariable("id"))),
-                                Todo.class)
-                        )
-                )
-                .and(route(POST("/todos/update"),
+                .and(route(
+                        GET("/todos/{id}"),
+                        req -> ok().body(todoService.findById(req.pathVariable("id")), Todo.class)
+                ))
+                .and(route(
+                        GET("/todos/title/{title}"),
+                        req -> ok().body(todoService.findByTitle(req.pathVariable("title")), Todo.class)
+                ))
+                .and(route(
+                        POST("/todos/create"),
+                        req -> ok().body( todoService.create(req.bodyToMono(Todo.class)), Todo.class)
+                ))
+//                .and(route(
+//                        POST("/todos/create"),
+//                        req -> req.body(toMono(Todo.class))
+//                                .doOnNext(todoService::create)
+//                                .then(ok().build())
+//                ))
+                .and(route(
+                        POST("/todos/update"),
                         req -> req.body(toMono(Todo.class))
                                 .doOnNext(todoService::update)
-                                .then(ServerResponse.ok().build()))
-                )
-                .and(route(POST("/todos/create"),
-                        req -> req.body(toMono(Todo.class))
-                                .doOnNext(todoService::create)
-                                .then(ok().build()))
-                )
-                .andRoute(RequestPredicates.POST("/todos/save"),
-                    req -> ServerResponse.ok().body(todoService.create(req.bodyToMono(Todo.class)), Todo.class)
-                );
+                                .then(ServerResponse.ok().build())
+                ));
+
     }
 
 

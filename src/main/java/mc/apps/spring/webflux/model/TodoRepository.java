@@ -14,7 +14,7 @@ public class TodoRepository {
     for tests
      */
     static Flux<Todo> toDoList = Flux.just(
-            new Todo("Learn Spring Boot",true),
+            new Todo( "Learn Spring Boot",true),
             new Todo("Practice Spring Boot",false)
     );
 
