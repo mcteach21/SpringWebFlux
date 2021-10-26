@@ -73,7 +73,12 @@ public class TodoController {
     }
 
     @GetMapping("/test")
-    public String test(final Model model){
+    public String test(){
         return "test";
+    }
+
+    @GetMapping("/websocket")
+    public String websocket(){
+        return "websocket";
     }
 }

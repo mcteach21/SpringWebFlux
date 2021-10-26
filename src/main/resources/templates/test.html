@@ -4,11 +4,6 @@
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    
-<!--    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>-->
-<!--    <script th:src="@{/jquery/jquery.min.js}"></script>-->
-<!--    <script th:src="@{/popper/popper.min.js}"></script>-->
-<!--    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>-->
 
     <link rel="shortcut icon" href="../resources/static/images/favicon.ico" th:href="@{/images/favicon.ico}"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
@@ -17,57 +12,88 @@
     <link rel="stylesheet" th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
 
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+
     <title>Test</title>
 
     <style>
-        .header {
-            padding-top: 25px;
-            padding-bottom: 25px;
-        }
-        .first-column {
-            background: green;
+
+        #content{
+            max-width: 60%;
+            margin: 50px auto;
             color: white;
-            font-size: 2rem;
-            border-width:2px;
-            border-color:#000;
-            background: #5851ff;
+            border :2px #4f4949 solid;
+            background: #464649;
             box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
             align-items: center;
-
+            padding: 20px;
         }
-        .second-column {
-
-            border-style: dotted;
-            border-width: 2px;
+        fieldset {
+            margin-bottom: 10px;
+            padding: 5px 10px;
+            border: 1px solid #777;
+        }
+        legend {
+            width: auto;
+            padding: 10px;
+            font-size: 1.1rem;
+        }
+        .form-control2 {
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+        #sendButton, textarea{
+            width: 100%;
         }
     </style>
 </head>
 <body>
 
-      <div class="container">
+  <div class="container">
+          <div id="content">
+              <fieldset>
+                  <legend>
+                      Server WebSocket
+                      <label> [Status: <span id="connectionStatus">OPENED</span>]</label>
+                  </legend>
+                  <div>
+                      <label>URL:</label>
+                      <input class="form-control2" type="text" id="serverUrl" value="ws://">
 
-
-          <div class="row header">
-              <div class="col-xs-12 text-center">
-                  <h3>Column Layout </h3>
-              </div>
+                      <button class="btn btn-sm btn-success" id="connectButton" style="display: inline-block;">Open</button>
+                      <button class="btn btn-sm btn-danger" id="disconnectButton" style="display: none;">Close</button>
+                  </div>
+                  <span id="error">..</span>
+              </fieldset>
+              <fieldset id="requestArea">
+                  <legend>Message..</legend>
+                  <div>
+                      <textarea  class="form-control2"  id="sendMessage"></textarea>
+                  </div>
+                  <div>
+                      <button class="btn btn-sm btn-primary" id="sendButton">Send</button>
+                  </div>
+              </fieldset>
+              <fieldset id="messageArea">
+                  <legend>Messages (log) <button class="btn btn-sm btn-warning" id="clearMessage">Clear</button></legend>
+                  <div id="messages">
+<!--                      <pre class="sent">hello!</pre><pre>SERVER RESPONSE : HELLO!</pre><pre class="sent">I'm MC, how r u?</pre><pre>SERVER RESPONSE : I'M MC, HOW R U?</pre>-->
+                  </div>
+              </fieldset>
           </div>
+ </div>
 
-          <div class="row">
-              <div class="col-sm-8 first-column">
-                  <p>This column takes the full height as its sibling column thanks to Flexbox</p>
-              </div>
-              <div class="col-sm-4 second-column">
-                  <p>
-                      Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
-                  </p>
-              </div>
-          </div>
-          <div class="row">
-
-          </div>
-      </div>
-
+<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/1.14.3/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
 
 </body>
 </html>

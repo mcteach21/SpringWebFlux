@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="shortcut icon" href="../resources/static/images/favicon.ico" th:href="@{/images/favicon.ico}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <title>WebSocket</title>
+
+</head>
+<body>
+
+<div class="container">
+    <div id="content">
+        <fieldset>
+            <legend>
+                Server WebSocket
+                <label> [Status: <span id="connectionStatus">OPENED</span>]</label>
+            </legend>
+            <div>
+                <label>URL:</label>
+                <input class="form-control2" type="text" id="serverUrl" value="ws://">
+
+                <button class="btn btn-sm btn-success" id="connectButton"  style="display: inline-block;">Open</button>
+                <button class="btn btn-sm btn-danger" id="disconnectButton"  style="display: none;">Close</button>
+
+                <span id="info" class="info"></span>
+            </div>
+
+        </fieldset>
+        <fieldset id="requestArea">
+            <legend>Message</legend>
+            <div>
+                <textarea  class="form-control2"  id="sendMessage" placeholder="Message to send.." disabled="disabled"></textarea>
+            </div>
+            <div>
+                <button class="btn btn-sm btn-primary" id="sendButton" disabled="disabled">Send</button>
+            </div>
+        </fieldset>
+        <fieldset id="messageArea">
+            <legend>Messages (log) <button class="btn btn-sm btn-warning" id="clearMessage">Clear</button></legend>
+            <div id="messages"></div>
+        </fieldset>
+    </div>
+</div>
+
+
+<!--    <div class="site-wrapper">-->
+<!--        <div class="site-wrapper-inner">-->
+<!--            <div class="cover-container">-->
+<!--                <div class="container">-->
+<!--                    <div class="row">-->
+<!--                        <div class="col-sm-12" className="bloc" >-->
+
+<!--                            <button id="connect" onclick="connect();" class="ui green button ">Connect</button>-->
+<!--                            <button id="disconnect" disabled="disabled" onclick="disconnect();"-->
+<!--                                    class="ui red button">Disconnect</button>-->
+<!--                        </div>-->
+<!--                        <div class="col-sm-12" className="bloc">-->
+<!--                            <textarea id="message" style="width: 350px" class="ui input" placeholder="Message to Echo"></textarea>-->
+<!--                        </div>-->
+<!--                        <div class="col-sm-12" className="bloc">-->
+<!--                            <button id="echo" onclick="echo();" disabled="disabled" class="ui button">Echo message</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div id="console-container">-->
+<!--                        <h3>Logging</h3>-->
+<!--                        <div id="logging"></div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="mastfoot">-->
+<!--                    <div class="inner">-->
+<!--                        <span class="text-muted">&copy; MC 2019-2021.</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/1.14.3/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
+<!--    <script th:src="@{/js/websocket.js}"></script>-->
+    <script>
+        let ws = null;
+        let url = "ws://localhost:8080/hi";
+
+        function setConnectionState(connected)
+        {
+            $('#connectButton').css("display", connected?"none":"inline-block");
+            $('#disconnectButton').css("display", !connected?"none":"inline-block");
+
+            $('#sendButton').prop( "disabled", !connected );
+            $('#sendMessage').prop( "disabled", !connected );
+        }
+        function display(message)
+        {
+            console = $('#messages');
+            p = document.createElement('p');
+            $(p).append(document.createTextNode(message));
+            $(console).append(p);
+        }
+
+        $(function(){
+
+            $('#serverUrl').val(url);
+
+            $('#connectButton').click(function(){
+                ws = new WebSocket(url);
+                ws.onopen = function() {
+                    setConnectionState(true);
+                    $('#info').html('Info: Connection Established!');
+                };
+
+                ws.onmessage = function(event) {
+                    display(event.data);
+                };
+
+                ws.onclose = function(event) {
+                    setConnectionState(false);
+                    $('#info').html('Info: Connection Closed!');
+                };
+            });
+
+            $('#disconnectButton').click(function(){
+                if (ws != null) {
+                    ws.close();
+                    ws = null;
+                }
+                setConnectionState(false);
+            });
+            $('#sendButton').click(function(){
+                if (ws != null)
+                {
+                    var message = $('#sendMessage').val();
+                    display('Sent to server :: ' + message);
+                    ws.send(message);
+
+                    $('#sendMessage').val('');
+                } else {
+                    $('#info').html('Error: Connection not established..');
+                }
+            });
+
+            $('#clearMessage').click(function(){ $('#messages').empty();});
+
+        });
+    </script>
+
+</body>
+</html>

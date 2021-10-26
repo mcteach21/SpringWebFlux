@@ -36,6 +36,13 @@ public class TodoWebFluxRouter {
                         .GET("/hello")
                         .and(RequestPredicates.accept(MediaType.TEXT_PLAIN)), webFluxHandler::hello);
     }
+    @Bean
+    public RouterFunction<ServerResponse> todoRoute (TodoWebFluxHandler webFluxHandler) {
+        logger.info("todoRoute..");
+        return RouterFunctions.route(RequestPredicates
+                .GET("/todo")
+                .and(RequestPredicates.accept(MediaType.APPLICATION_JSON)), webFluxHandler::todo);
+    }
 
     @Bean
     RouterFunction<ServerResponse> composedRoutes() {
@@ -70,7 +77,6 @@ public class TodoWebFluxRouter {
                                 .doOnNext(todoService::update)
                                 .then(ServerResponse.ok().build())
                 ));
-
     }
 
 

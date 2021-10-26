@@ -226,3 +226,47 @@ a, a:hover{
 .red{
     color:red;
 }
+
+#content{
+    max-width: 60%;
+    margin: 50px auto;
+    color: white;
+    border :2px #4f4949 solid;
+    background: #464649;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    align-items: center;
+    padding: 20px;
+}
+fieldset {
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border: 1px solid #777;
+}
+legend {
+    width: auto;
+    padding: 10px;
+    font-size: 1.1rem;
+}
+.form-control2 {
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    max-width: 100%;
+}
+#sendButton, textarea{
+    width: 100%;
+}
+.info{
+    color: greenyellow;
+}
+#messages p{
+    margin-top: 0;
+    margin-bottom: 0.2rem;
+}

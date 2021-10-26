@@ -73,4 +73,18 @@ public class ReactiveWebClient {
 
         todoFlux.subscribe(logger::info);
     }
+
+    public void getTitle() {
+        logger.info("ReactiveWebClient testRoute()..");
+
+        Mono<String> todoMono = client.get()
+                .uri("/todo")
+                .accept(MediaType.APPLICATION_JSON)
+                .retrieve()
+                .bodyToMono(Todo.class)
+                .map(Todo::getTitle);
+
+        todoMono.subscribe(logger::info);
+    }
+
 }

@@ -35,8 +35,12 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <a href="./todos" th:href="@{/todos}" class="dropdown-item">WebFlux Request (Webflux Router)</a>
-                                    <a href="./api/todos" th:href="@{/api/todos}" class="dropdown-item">WebFlux Request (Rest Controller)</a>
+                                    <a href="./api/todos" th:href="@{/api/todos}" class="dropdown-item">
+                                        <i class="fa fa-lock" aria-hidden="true"></i> WebFlux Request (Rest Controller)
+                                    </a>
                                     <a class="dropdown-item" href="./" th:href="@{/}">Todos (Controller + Thymeleaf)</a>
+
+                                    <a class="dropdown-item" href="./websocket" th:href="@{/websocket}">Webflux - Websocket</a>
                                 </div>
                             </li>
                             <li class="nav-item"><a href="#">About</a></li>
@@ -50,7 +54,6 @@
                     <div class="col-sm-12" className="bloc" >
                         <span>[[${found}]]</span>
                     </div>
-<!--                    th:if="${found != null}"-->
                 </div>
                 <div class="row">
                     <div class="col-lg-6 col-sm-12" className="bloc">
@@ -100,7 +103,6 @@
 
             <div class="mastfoot">
                 <div class="inner">
-
                     <span class="text-muted">&copy; MC 2019-2021.</span>
                 </div>
             </div>
