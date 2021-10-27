@@ -15,8 +15,8 @@ public class WebClientCommandLineRunner implements CommandLineRunner {
 
 //        webClient.create();
 //        webClient.findByTitle("WebClient");
-//        webClient.getAll();
+          webClient.getAll();
 
-        webClient.getTitle();
+//        webClient.getTitle();
     }
 }

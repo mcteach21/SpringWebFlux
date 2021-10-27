@@ -21,7 +21,7 @@
         <fieldset>
             <legend>
                 Server WebSocket
-                <label> [Status: <span id="connectionStatus">OPENED</span>]</label>
+                <label> [Status: <span id="connectionStatus"></span>]</label>
             </legend>
             <div>
                 <label>URL:</label>
@@ -50,45 +50,9 @@
     </div>
 </div>
 
-
-<!--    <div class="site-wrapper">-->
-<!--        <div class="site-wrapper-inner">-->
-<!--            <div class="cover-container">-->
-<!--                <div class="container">-->
-<!--                    <div class="row">-->
-<!--                        <div class="col-sm-12" className="bloc" >-->
-
-<!--                            <button id="connect" onclick="connect();" class="ui green button ">Connect</button>-->
-<!--                            <button id="disconnect" disabled="disabled" onclick="disconnect();"-->
-<!--                                    class="ui red button">Disconnect</button>-->
-<!--                        </div>-->
-<!--                        <div class="col-sm-12" className="bloc">-->
-<!--                            <textarea id="message" style="width: 350px" class="ui input" placeholder="Message to Echo"></textarea>-->
-<!--                        </div>-->
-<!--                        <div class="col-sm-12" className="bloc">-->
-<!--                            <button id="echo" onclick="echo();" disabled="disabled" class="ui button">Echo message</button>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div id="console-container">-->
-<!--                        <h3>Logging</h3>-->
-<!--                        <div id="logging"></div>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-<!--                <div class="mastfoot">-->
-<!--                    <div class="inner">-->
-<!--                        <span class="text-muted">&copy; MC 2019-2021.</span>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-
     <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
     <script th:src="@{/webjars/popper.js/1.14.3/umd/popper.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
-<!--    <script th:src="@{/js/websocket.js}"></script>-->
     <script>
         let ws = null;
         let url = "ws://localhost:8080/hi";
@@ -100,6 +64,8 @@
 
             $('#sendButton').prop( "disabled", !connected );
             $('#sendMessage').prop( "disabled", !connected );
+
+            $('#connectionStatus').html(connected?"OPEN":"CLOSED");
         }
         function display(message)
         {

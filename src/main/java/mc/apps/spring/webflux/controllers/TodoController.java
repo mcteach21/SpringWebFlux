@@ -37,7 +37,8 @@ public class TodoController {
 
 
         model.addAttribute("todos", reactiveDataDrivenMode);
-        model.addAttribute("found", null);
+//        model.addAttribute("found", null);
+
         return "index";
     }
 
@@ -74,6 +75,7 @@ public class TodoController {
 
     @GetMapping("/test")
     public String test(){
+//        throw new RuntimeException("test exception");
         return "test";
     }
 

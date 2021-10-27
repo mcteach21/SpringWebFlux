@@ -23,12 +23,6 @@ public class Todo  { //implements Serializable
     private String title;
     private boolean done = false;
 
-//    public Todo(String id, String title, boolean done) {
-//        this.id = id;
-//        this.title = title;
-//        this.done = done;
-//    }
-
     public Todo(String title) {
         this.title = title;
     }

@@ -46,6 +46,13 @@
             </exclusions>
         </dependency>
 
+        <!--   websocket     -->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-websocket</artifactId>-->
+<!--        </dependency>-->
+
+        <!--  Spring Webflux Security -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
@@ -56,13 +63,15 @@
             <scope>test</scope>
         </dependency>
 
+
+        <!--    Template Engine : Thymeleaf    -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
         <!--
-              generate all getters/setters for fields of the class
+              lombok : generate all getters/setters for fields of the class
               and an empty constructor (@NoArgsConstructor)
         -->
         <dependency>
@@ -71,33 +80,26 @@
             <version>1.18.20</version>
         </dependency>
 
+        <!--   webjars     -->
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
             <version>4.2.1</version>
         </dependency>
-
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>font-awesome</artifactId>
             <version>4.7.0</version>
         </dependency>
 
-
-        <!-- mongodb -->
+        <!-- Mongodb -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
             <version>2.5.5</version>
         </dependency>
 
-<!--         <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-tomcat</artifactId>-->
-<!--            <scope>provided</scope>-->
-<!--        </dependency>-->
-
-
+        <!-- Tests -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -118,6 +120,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${project.parent.version}</version>
             </plugin>
         </plugins>
     </build>
