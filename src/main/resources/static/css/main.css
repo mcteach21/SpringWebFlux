@@ -228,7 +228,6 @@ a, a:hover{
 }
 
 #content{
-    max-width: 50%;
     margin: 50px auto;
     color: white;
     border :2px #4f4949 solid;
@@ -269,4 +268,18 @@ legend {
 #messages p{
     margin-top: 0;
     margin-bottom: 0.2rem;
+}
+
+/*html:not([data-scroll='0']) body {*/
+/*    padding-top: 3em;*/
+/*}*/
+html:not([data-scroll='0']) .masthead {
+    position: fixed;
+    top: 0;
+    background-color: #333;
+    box-shadow: 0 0 0.5em rgba(0, 0, 0, .5);
+}
+
+.container {
+    margin-top: 150px !important;
 }

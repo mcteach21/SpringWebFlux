@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:fragment="main-fragment (title, otherStaticResources,  nav, mainContent)">
+<head>
+    <meta charset="UTF-8" />
+    <title th:replace="${title}">title..</title>
+
+    <link rel="shortcut icon" href="../resources/static/images/favicon.ico" th:href="@{/images/favicon.ico}"/>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+
+</head>
+<body>
+    <div class="cover-container">
+        <div class="masthead clearfix">
+            <div class="inner">
+                <div th:replace="~{/fragments/app-fragments :: header}">
+                    layout header
+                </div>
+
+                <nav th:insert="${nav} ?: ~{}">
+                    nav..
+                </nav>
+            </div>
+        </div>
+
+        <div class="container" th:insert="${mainContent} ?: ~{}">
+              Main content of Page
+        </div>
+
+        <div th:replace="~{/fragments/app-fragments :: footer}">
+            layout footer
+        </div>
+
+    </div>
+
+
+    <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/1.14.3/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
+
+    <th:block th:replace="${otherStaticResources} ?: ~{}"></th:block>
+</body>
+</html>

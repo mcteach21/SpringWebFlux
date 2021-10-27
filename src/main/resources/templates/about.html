@@ -8,21 +8,21 @@
                                                )}">
 
 <head>
-    <title>Test!</title>
+    <title>About!</title>
 </head>
 <body>
-<div id="page-nav" th:replace="~{/fragments/app-fragments :: nav-admin}"></div>
-<div id="page-main-content">
-    <h2>Tests</h2>
-</div>
+    <div id="page-nav" th:replace="~{/fragments/app-fragments :: nav-default}"></div>
+    <div id="page-main-content">
+        <h2>About</h2>
+    </div>
 
 
-<th:block id="page-static-resources">
-    <script>
-        $(function(){
-            console.log('hello from jquery!');
-        });
-    </script>
-</th:block>
+    <th:block id="page-static-resources">
+        <script>
+            $(function(){
+                console.log('hello from about!');
+            });
+        </script>
+    </th:block>
 </body>
 </html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/main-layout :: main-fragment(
+                                                ~{::title},
+                                                ~{:: #page-static-resources},
+                                                ~{:: #page-nav},
+                                                ~{:: #page-main-content},
+                                               )}">
+
+<head>
+    <title>About!</title>
+</head>
+<body>
+    <div id="page-nav" th:replace="~{/fragments/app-fragments :: nav-default}"></div>
+    <div id="page-main-content">
+        <h2>Error Page</h2>
+        <table>
+            <tr>
+                <td>Date</td>
+                <td th:text="${timestamp}"/>
+            </tr>
+            <tr>
+                <td>Path</td>
+                <td th:text="${path}"/>
+            </tr>
+            <tr>
+                <td>Error</td>
+                <td th:text="${error}"/>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td th:text="${status}"/>
+            </tr>
+            <tr>
+                <td>Message</td>
+                <td th:text="${message}"/>
+            </tr>
+            <tr>
+                <td>Exception</td>
+                <td th:text="${exception}"/>
+            </tr>
+            <tr>
+                <td>Trace</td>
+                <td>
+                    <pre th:text="${trace}"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    <th:block id="page-static-resources">
+        <script>
+            $(function(){
+
+            });
+        </script>
+    </th:block>
+</body>
+</html>

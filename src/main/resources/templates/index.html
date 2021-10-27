@@ -1,158 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/main-layout :: main-fragment(
+                                                ~{::title},
+                                                ~{:: #page-static-resources},
+                                                ~{:: #page-nav},
+                                                ~{:: #page-main-content},
+                                               )}">
+
 <head>
-    <meta charset="UTF-8">
-
-    <link rel="shortcut icon" href="../resources/static/images/favicon.ico" th:href="@{/images/favicon.ico}"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-    <link rel="stylesheet" th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}">
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
-
-    <link rel="stylesheet" th:href="@{/css/main.css}"/>
     <title>Index</title>
 </head>
 <body>
+    <div id="page-nav" th:replace="~{/fragments/app-fragments :: nav-default}"></div>
 
-<div class="site-wrapper">
-
-    <div class="site-wrapper-inner">
-
-        <div class="cover-container">
-
-            <div class="masthead clearfix">
-                <div class="inner">
-                    <h3 class="masthead-brand">
-                        <img th:src="@{/images/spring-boot-logo.png}" alt="spring boot" class="logo" />
-                        <img th:src="@{/images/logo.png}" alt="webflux" class="logo" />
-                    </h3>
-                    <nav>
-                        <ul class="nav masthead-nav">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Webflux
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a href="./todos" th:href="@{/todos}" class="dropdown-item">WebFlux Request (Webflux Router)</a>
-                                    <a href="./api/todos" th:href="@{/api/todos}" class="dropdown-item">
-                                        <i class="fa fa-lock" aria-hidden="true"></i> WebFlux Request (Rest Controller)
-                                    </a>
-                                    <a class="dropdown-item" href="./" th:href="@{/}">Todos (Controller + Thymeleaf)</a>
-
-                                    <a class="dropdown-item" href="./websocket" th:href="@{/websocket}">Webflux - Websocket</a>
-                                </div>
-                            </li>
-                            <li class="nav-item"><a href="#">About</a></li>
-                        </ul>
-                    </nav>
-                </div>
+    <div id="page-main-content">
+        <div class="row">
+            <div class="col-sm-12" className="bloc" >
+                <span>[[${found}]]</span>
             </div>
-
-            <div class="container" style="margin-top:100px;">
-                <div class="row">
-                    <div class="col-sm-12" className="bloc" >
-                        <span>[[${found}]]</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-sm-12" className="bloc">
-                        <div class="inner cover">
-                            <h3 class="cover-heading">Spring WebFlux!</h3>
-                            <div class="lead">
-                                <p>Spring WebFlux est un framework Web entièrement <b>non bloquant</b> et basé sur des annotations, construit sur <b>Reactor Project</b>, qui permet de créer des applications réactives sur la couche HTTP.<br/> WebFlux utilise une nouvelle fonctionnalité de fonctions de routeur pour appliquer une programmation fonctionnelle à la couche Web et contourner les contrôleurs déclaratifs et les RequestMappings.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-sm-12" className="bloc">
-                        <h6>Todos (TodoController)..</h6>
-                        <form class="form-inline" style="margin-bottom: 10px;" id="create-form">
-                            <input type="text" class="form-control" id="title" placeholder="todo (title)..">
-                            <button type="submit" id="btn-add" class="btn btn-primary form-control">Add</button>
-                        </form>
-                        <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                            <table class="table table-bordered table-striped mb-0">
-                                <thead>
-                                    <tr>
-                                        <th>Title</th>
-                                        <th>Done?</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="result" data-th-each="todo : ${todos}">
-                                        <td>[[${todo.id}]] <br/> [[${todo.title}]]</td>
-                                        <td th:class="${todo.done ? 'green' : 'red'}">[[${todo.done}]]</td>
-                                        <td>
-<!--                                            <a th:href="@{/category/edit/{id}(id=${category.idCategory})}">view</a>-->
-                                            <a th:href="@{/todos/delete/{id}(id=${todo.id})}">
-                                                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                            </a>
-                                            <a th:href="@{|/todos/done/${todo.id}|}">
-                                                <i class="fa fa-check-circle-o" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="mastfoot">
-                <div class="inner">
-                    <span class="text-muted">&copy; MC 2019-2021.</span>
-                </div>
-            </div>
-
         </div>
-
+        <div class="row">
+            <div class="col-lg-6 col-sm-12" className="bloc">
+                <div class="inner cover">
+                    <h3 class="cover-heading">Spring WebFlux!</h3>
+                    <div class="lead">
+                        <p>Spring WebFlux est un framework Web entièrement <b>non bloquant</b> et basé sur des annotations, construit sur <b>Reactor Project</b>, qui permet de créer des applications réactives sur la couche HTTP.<br/> WebFlux utilise une nouvelle fonctionnalité de fonctions de routeur pour appliquer une programmation fonctionnelle à la couche Web et contourner les contrôleurs déclaratifs et les RequestMappings.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12" className="bloc">
+                <h6>Todos (TodoController)..</h6>
+                <form class="form-inline" style="margin-bottom: 10px;" id="create-form">
+                    <input type="text" class="form-control" id="title" placeholder="todo (title)..">
+                    <button type="submit" id="btn-add" class="btn btn-primary form-control">Add</button>
+                </form>
+                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                    <table class="table table-bordered table-striped mb-0">
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Done?</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="result" data-th-each="todo : ${todos}">
+                            <td>[[${todo.id}]] <br/> [[${todo.title}]]</td>
+                            <td th:class="${todo.done ? 'green' : 'red'}">[[${todo.done}]]</td>
+                            <td>
+                                <!--                                            <a th:href="@{/category/edit/{id}(id=${category.idCategory})}">view</a>-->
+                                <a th:href="@{/todos/delete/{id}(id=${todo.id})}">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </a>
+                                <a th:href="@{|/todos/done/${todo.id}|}">
+                                    <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 
-</div>
 
-<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
-<script th:src="@{/webjars/popper.js/1.14.3/umd/popper.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
+    <th:block id="page-static-resources">
+        <script>
+            $(function(){
+                console.log('hello from jquery!');
 
-<script>
-    $(function(){
-        console.log('hello from jquery!');
+                $("#create-form").submit(function (event) {
+                    event.preventDefault();
+                    fire_ajax_submit();
+                });
 
-        $("#create-form").submit(function (event) {
-            event.preventDefault();
-            fire_ajax_submit();
-        });
+                scroll_handle();
+            });
 
-    });
+            function scroll_handle(){
+                const debounce = (fn) => {
+                    let frame;
+                    return (...params) => {
+                        if (frame) {
+                            cancelAnimationFrame(frame);
+                        }
+                        frame = requestAnimationFrame(() => {
+                            fn(...params);
+                        });
 
-    function fire_ajax_submit() {
-
-        var todo = {}
-        todo["title"] = $("#title").val();
-        todo["done"] = false;
-
-        $("#btn-add").prop("disabled", true);
-        $.ajax({
-            type: "POST",
-            contentType: "application/json",
-            url: "/todos/create",
-            data: JSON.stringify(todo),
-            dataType: 'json',
-            cache: false,
-            success: function (data) {
-                console.log("Success : ", JSON.stringify(data, null, 4));
-                window.location.replace("/");
-                $("#btn-add").prop("disabled", false);
-            },
-            error: function (e) {
-                alert("Ajax Error : "+e.responseText);
+                    }
+                };
+                const storeScroll = () => {
+                    document.documentElement.dataset.scroll = window.scrollY;
+                }
+                document.addEventListener('scroll', debounce(storeScroll), { passive: true });
+                storeScroll();
             }
-        });
 
-    }
-</script>
+            function fire_ajax_submit() {
+
+                var todo = {}
+                todo["title"] = $("#title").val();
+                todo["done"] = false;
+
+                $("#btn-add").prop("disabled", true);
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    url: "/todos/create",
+                    data: JSON.stringify(todo),
+                    dataType: 'json',
+                    cache: false,
+                    success: function (data) {
+                        console.log("Success : ", JSON.stringify(data, null, 4));
+                        window.location.replace("/");
+                        $("#btn-add").prop("disabled", false);
+                    },
+                    error: function (e) {
+                        alert("Ajax Error : "+e.responseText);
+                    }
+                });
+
+            }
+        </script>
+    </th:block>
 </body>
 </html>

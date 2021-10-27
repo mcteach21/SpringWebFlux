@@ -73,6 +73,11 @@ public class TodoController {
         return new RedirectView("/");
     }
 
+    @GetMapping("/about")
+    public String about(){
+        return "about";
+    }
+
     @GetMapping("/test")
     public String test(){
 //        throw new RuntimeException("test exception");

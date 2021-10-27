@@ -1,22 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/main-layout :: main-fragment(
+                                                ~{::title},
+                                                ~{:: #page-static-resources},
+                                                ~{:: #page-nav},
+                                                ~{:: #page-main-content},
+                                               )}">
+
 <head>
-    <meta charset="UTF-8">
-
-    <link rel="shortcut icon" href="../resources/static/images/favicon.ico" th:href="@{/images/favicon.ico}"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-    <link rel="stylesheet" th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}">
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
-
-    <link rel="stylesheet" th:href="@{/css/main.css}"/>
-    <title>WebSocket</title>
-
+    <title>Websocket</title>
 </head>
 <body>
-
-<div class="container">
+<div id="page-nav" th:replace="~{/fragments/app-fragments :: nav-default}"></div>
+<div id="page-main-content">
     <div id="content">
         <fieldset>
             <legend>
@@ -50,9 +46,8 @@
     </div>
 </div>
 
-    <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
-    <script th:src="@{/webjars/popper.js/1.14.3/umd/popper.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
+
+<th:block id="page-static-resources">
     <script>
         let ws = null;
         let url = "ws://localhost:8080/hi";
@@ -120,6 +115,6 @@
 
         });
     </script>
-
+</th:block>
 </body>
 </html>

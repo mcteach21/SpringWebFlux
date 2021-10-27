@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fragments</title>
+</head>
+<body>
+
+    <!--    fragments -->
+    <h3 th:fragment = "header"  class="masthead-brand">
+        <a th:href="@{/}"><img th:src="@{/images/spring-boot-logo.png}" alt="spring boot" class="logo" /></a>
+        <a th:href="@{/}"><img th:src="@{/images/logo.png}" alt="webflux" class="logo" /></a>
+    </h3>
+
+    <ul th:fragment = "nav-default" class="nav masthead-nav">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Webflux
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a href="./todos" th:href="@{/todos}" class="dropdown-item">WebFlux Request (Webflux Router)</a>
+                <a href="./api/todos" th:href="@{/api/todos}" class="dropdown-item">
+                    <i class="fa fa-lock" aria-hidden="true"></i> WebFlux Request (Rest Controller)
+                </a>
+                <a class="dropdown-item" href="./" th:href="@{/}">Todos (Controller + Thymeleaf)</a>
+
+                <a class="dropdown-item" href="./websocket" th:href="@{/websocket}">Webflux - Websocket</a>
+            </div>
+        </li>
+        <li class="nav-item"><a th:href="@{/about}">About</a></li>
+    </ul>
+
+    <!-- Admin Nav -->
+    <ul th:fragment = "nav-admin">
+      <li><a th:href="@{/admin/zx}">admin 1</a></li>
+      <li><a th:href="@{/admin/xy}">admin 2</a></li>
+    </ul>
+
+    <div th:fragment="footer">
+        <div class="mastfoot">
+            <div class="inner">
+                <span class="text-muted">&copy; MC 2019-2021.</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

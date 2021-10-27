@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono;
  * This Handler will receive a message and return it prefixed with “Server Response : ”.
  */
 @Component
-public class ReactiveWebSocketHandler implements WebSocketHandler  {
+public class WebfluxWebSocketHandler implements WebSocketHandler  {
 
     @Override
     public Mono<Void> handle(WebSocketSession webSocketSession) {
