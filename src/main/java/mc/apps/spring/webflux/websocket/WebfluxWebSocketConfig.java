@@ -29,8 +29,8 @@ public class WebfluxWebSocketConfig {
         logger.info("WebfluxConfig - handlerMapping..");
 
         Map<String, WebSocketHandler> handlerMap = new HashMap<>();
-        handlerMap.put("/hello", handler); //websocketHandler());
-        handlerMap.put("/hi", handler); //websocketHandler());
+        handlerMap.put("/hello", handler);
+        handlerMap.put("/hi", handler);
 
         return new SimpleUrlHandlerMapping(handlerMap, Ordered.HIGHEST_PRECEDENCE);
     }
